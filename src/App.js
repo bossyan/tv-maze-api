@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SearchField from './Components/SearchField/SearchField';
+import Show from './Components/Show/Show';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -14,8 +15,9 @@ function App() {
         shows={shows}
         setShows={setShows}
       />
+
       {shows.map((show) => {
-        return <div key={show.show.id}>{show.show.name}</div>;
+        return <Show show={show.show} />;
       })}
     </div>
   );
