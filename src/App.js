@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import SearchField from './Components/SearchField/SearchField';
 
 function App() {
+  const [query, setQuery] = useState('');
+  const [shows, setShows] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <header className='App-header'></header>
+      <SearchField
+        query={query}
+        setQuery={setQuery}
+        shows={shows}
+        setShows={setShows}
+      />
+      {shows.map((show) => {
+        return <div key={show.show.id}>{show.show.name}</div>;
+      })}
     </div>
   );
 }
