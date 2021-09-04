@@ -1,18 +1,28 @@
+import './Show.css';
 import ReactHtmlParser from 'react-html-parser';
+
+import { Button, Row } from 'react-bootstrap';
 
 const Show = ({ show }) => {
   console.log(show);
   return (
-    <div key={show.id}>
+    <div className='show' key={show.id}>
       {/* Check if show has an image, if not display a placeholder */}
-      {show.image ? (
-        <img src={show.image.medium} alt={show.name} />
-      ) : (
-        <img src='https://via.placeholder.com/210' alt='Placeholder Image' />
-      )}
+      <div className='show--image'>
+        {show.image ? (
+          <img src={show.image.medium} alt={show.name} />
+        ) : (
+          <img src='https://via.placeholder.com/210' alt='Placeholder Image' />
+        )}
+      </div>
 
-      <h2>{show.name}</h2>
-      <div>{ReactHtmlParser(show.summary)}</div>
+      <div className='show--detail'>
+        <h2>{show.name}</h2>
+        {ReactHtmlParser(show.summary)}
+        <Button href={show.url} target='_blank'>
+          Show episodes
+        </Button>
+      </div>
     </div>
   );
 };
